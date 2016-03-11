@@ -1,5 +1,29 @@
-/* app css stylesheet */
+/* app css stylesheet
+html{
+  /*background:url('../img/congress-pic.jpg') no-repeat center center;
+  height:100%;
+  width: 100%;
+  background-size:cover;
+  margin:0;*//*
+  background:silver;
+}
+*/
 
+/*
+#nothome{
+  background-color:#FFFFFF;
+}
+.view-container{
+  height:110%;
+  margin: 0;
+  padding: 0;*/
+  /*background:url('../img/congress-pic-darker-bw.jpg') no-repeat center center;*/
+ /* background:silver;
+}
+
+.view-frame{
+  height: 100%;
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
@@ -31,3 +55,5 @@
 #homepic{
   height:calc(100%-50px);
 }
+
+*/

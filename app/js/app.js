@@ -3,7 +3,8 @@
 // Declare app level module which depends on views, and components
 var informedCitizen = angular.module('informedCitizen', [
   'ngRoute',
-  'informedCitizenControllers'
+  'informedCitizenControllers',
+    'informedCitizenServices'
 
 ]);
 
