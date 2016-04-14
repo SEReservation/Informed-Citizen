@@ -1,0 +1,19 @@
+<div class="navbar" ng-controller="HeaderCtrl">
+    <div class="navbar-inner">
+        <a class="brand" ng-click="home()">Informed Citizen</a>
+        <ul class="nav">
+            <li ng-class="{active:isNavbarActive('searchBills')}"><a href="/searchBills">Search Bills</a></li>
+            <li ng-class="{active:isNavbarActive('legislatorBios')}"><a href="/legislatorBios">Legislator Bios</a></li>
+        </ul>
+        <ul class="nav" ng-show="isAuthenticated()">
+            <li ng-class="{active:isNavbarActive('userHome')}"><a href="/userHome">User Home</a></li>
+            <li ng-class="{active:isNavbarActive('bills')}"><a href="/bills">My Bills</a></li>
+            <li ng-class="{active:isNavbarActive('admin')}" ng-show="isAdmin()"><a href="/admin/users">Admin</a></li>
+        </ul>
+        <ul class="nav pull-right" ng-show="hasPendingRequests()">
+            <li class="divider-vertical"></li>
+            <li><a href="#"><img src="/static/img/spinner.gif"></a></li>
+        </ul>
+        <login-toolbar></login-toolbar>
+    </div>
+</div>
