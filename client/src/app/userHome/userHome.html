@@ -1,9 +1,9 @@
-<div class="container-fluid">
+<!--<div class="container-fluid">
     <div>
         <input type="button" value="Show Location"
                onclick="javascript:showlocation()"/> <br/>
-        Latitude: <span id="latitude"></span> <br/>
-        Longitude: <span id="longitude"></span>
+        Latitude: <span ng-model="lat" id="latitude"></span> <br/>
+        Longitude: <span ng-model = "longi" id="longitude"></span>
     </div>
 
     <div class="row" style="margin-top:5%;">
@@ -29,4 +29,29 @@
             </a>
         </div>
     </div>
+</div> -->
+<table>
+    <tr>
+        <th style="font-size:200%">Your Representatives</th>
+        <th style=" padding-left:2em; font-size:200%;">Chamber</th>
+        <th style=" padding-left:2em; font-size:200%;">Money Talks</th>
+        <th style=" padding-left:2em; font-size:200%;">Term</th>
+        <th style=" font-size:200%">Contact</th>
+    </tr>
+    <tr ng-repeat="report in reports">
+        <td width = 20% style="font-size:200%; font-style:italic; font-weight:bold;" ><img  style ="padding-top:2em; padding-bottom:2em;"src = "https://theunitedstates.io/images/congress/225x275/{{report.bioguide_id}}.jpg"><br />{{report.title}}. {{report.first_name}} {{report.last_name}}</td>
+        <td width = 20% style="padding-left:7em; ">{{report.chamber}}</td>
+        <td width = 20% style="padding-left:7em;"><a href = "http://docquery.fec.gov/cgi-bin/can_give/{{report.fec_ids[report.fec_ids.length - 1]}}">Comittee Contributions</a><br />
+        <a href = "http://docquery.fec.gov/cgi-bin/can_ind/{{report.fec_ids[report.fec_ids.length-1]}}">Individual Contributions</a><br />
+            <a href = "http://docquery.fec.gov/cgi-bin/can_com/{{report.fec_ids[report.fec_ids.length - 1]}}">Paid by this official's committees</a><br /></td>
+        <td width = 20% style="padding-left:10em;">{{report.term_start}} - {{report.term_end}}
+            </td>
+        <td width = 20% style="padding-left:9em;"><a href="report.website">Website</a>
+            <br /><a href="{{report.contact_form}}">Contact Form (if available)</a><br />
+        <a href="http://facebook.com/{{report.facebook_id}}">Facebook</a><br />
+        <phone>{{report.phone}}</phone></td>
+
+    </tr>
+</table>
+</div>
 </div>
