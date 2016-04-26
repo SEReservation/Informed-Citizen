@@ -45,12 +45,7 @@ angular.module('userHome', [])
   $scope.initialize=function(address)
   {
     geocoder = new google.maps.Geocoder();
-    map = new google.maps.Map(document.getElementById("map"),
-        {
-          zoom: 8,
-          center: new google.maps.LatLng(22.7964,79.5410),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
+
 
     var newlat;
     var newlong;
