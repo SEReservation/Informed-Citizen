@@ -213,7 +213,7 @@ angular.module('searchBills', [])
 
 
         $scope.myChange = function () {
-            $http.get('http://openstates.org/api/v1//bills/?state=' + $scope.state["code"] + '&apikey=efe4a4e77a154868947e0e24593a32e7').success(function (data) {
+            $http.get('http://openstates.org/api/v1//bills/?state=' + $scope.state["code"] + '&sort=created_at&page=1&per_page=5&apikey=efe4a4e77a154868947e0e24593a32e7').success(function (data) {
                 $scope.reports = angular.fromJson(data);
             })
         };
