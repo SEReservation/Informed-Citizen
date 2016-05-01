@@ -1,0 +1,81 @@
+<!--<div class="container-fluid">
+    <div>
+        <input type="button" value="Show Location"
+               onclick="javascript:showlocation()"/> <br/>
+        Latitude: <span ng-model="lat" id="latitude"></span> <br/>
+        Longitude: <span ng-model = "longi" id="longitude"></span>
+    </div>
+
+    <div class="row" style="margin-top:5%;">
+        <div class="col-md-3">
+            <a href="#/bills">
+                <div class="thumbnail tile tile-wide tile-red">
+                    <h1>My State Bills</h1>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#/billsearch">
+                <div class="thumbnail tile tile-wide tile-blue">
+                    <h1>Search Bills</h1>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="#/bio">
+                <div class="thumbnail tile tile-wide tile-orange">
+                    <h1>My Representative Bios</h1>
+                </div>
+            </a>
+        </div>
+    </div>
+</div> -->
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+</div>
+
+<p>Not at home?</p><input id="address" placeholder="Enter New Address" ng-model = "address" type="textbox">
+<input type="submit" value="Change Location" ng-click="initialize(address)">
+
+</div>
+<div id="map" style="height:200px; width: 530px"></div>
+
+<!--Table holds images and info on legislators-->
+<table>
+    <tr>
+        <th style="font-size:200%">Your Representatives</th>
+        <th style=" padding-left:2em; font-size:200%;">Chamber</th>
+        <th style=" padding-left:2em; font-size:200%;">Money Talks</th>
+        <th style=" padding-left:2em; font-size:200%;">Term</th>
+        <th style=" font-size:200%">Contact</th>
+    </tr>
+    <tr ng-repeat="report in reports">
+        <td width = 20% style="font-size:200%; font-style:italic; font-weight:bold;" ><img  style ="padding-top:2em; padding-bottom:2em;"src = "https://theunitedstates.io/images/congress/225x275/{{report.bioguide_id}}.jpg"><br />{{report.title}}. {{report.first_name}} {{report.last_name}}</td>
+        <td width = 20% style="padding-left:7em; ">{{report.chamber | uppercase}}</td>
+        <td width = 20% style="padding-left:7em;"><a href = "http://docquery.fec.gov/cgi-bin/can_give/{{report.fec_ids[report.fec_ids.length - 1]}}">Comittee Contributions</a><br />
+        <a href = "http://docquery.fec.gov/cgi-bin/can_ind/{{report.fec_ids[report.fec_ids.length-1]}}">Individual Contributions</a><br />
+            <a href = "http://docquery.fec.gov/cgi-bin/can_com/{{report.fec_ids[report.fec_ids.length - 1]}}">Paid by this official's committees</a><br /></td>
+        <td width = 20% style="padding-left:10em;">{{report.term_start}} - {{report.term_end}}
+            </td>
+        <td width = 20% style="padding-left:9em;">
+        <div>
+            <a href="{{report.website}}">Website</a>
+        </div>
+        <div ng-if="report.contact_form">
+            <a href="{{report.contact_form}}">Contact Form</a>
+        </div>
+        <div>
+            <a href="http://facebook.com/{{report.facebook_id}}">Facebook</a>
+        </div>
+        <div>
+            <phone>{{report.phone}}</phone></td>
+        </div>
+
+    </tr>
+</table>
+
+
+
+<div></div>
+
