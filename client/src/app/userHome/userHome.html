@@ -58,10 +58,19 @@
             <a href = "http://docquery.fec.gov/cgi-bin/can_com/{{report.fec_ids[report.fec_ids.length - 1]}}">Paid by this official's committees</a><br /></td>
         <td width = 20% style="padding-left:10em;">{{report.term_start}} - {{report.term_end}}
             </td>
-        <td width = 20% style="padding-left:9em;"><a href="{{report.website}}">Website</a>
-            <br /><a href="{{report.contact_form}}">Contact Form (if available)</a><br />
-        <a href="http://facebook.com/{{report.facebook_id}}">Facebook</a><br />
-        <phone>{{report.phone}}</phone></td>
+        <td width = 20% style="padding-left:9em;">
+        <div>
+            <a href="{{report.website}}">Website</a>
+        </div>
+        <div ng-if="report.contact_form">
+            <a href="{{report.contact_form}}">Contact Form</a>
+        </div>
+        <div>
+            <a href="http://facebook.com/{{report.facebook_id}}">Facebook</a>
+        </div>
+        <div>
+            <phone>{{report.phone}}</phone></td>
+        </div>
 
     </tr>
 </table>
