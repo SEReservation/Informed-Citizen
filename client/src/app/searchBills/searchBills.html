@@ -5,6 +5,15 @@
         <select ng-model="state" ng-change="myChange()" ng-options="state.name for state in states">
         </select>
     </div>
+    <div>
+        <p style="font-size:150%">After selecting a state, please click on the Bill Id button for full bill text below:</p>
+        <p style="font-size:130%" ng-if="billdetail"><a href={{billdetail.searchresult[0].text_url}}>{{billdetail.searchresult[0].state}}    {{billdetail.searchresult[0].bill_number}}</a><br />
+
+            <!--<button ng-click="gettext(billdetail.searchresult[0].bill_id)">get text</button> --></p>
+        <!--<p>{{billtext}}</p> -->
+
+
+    </div>
     <table>
         <tr>
             <th style="font-size:200%">Bill Id</th>
@@ -12,7 +21,7 @@
             <th style=" font-size:200%">Created At</th>
         </tr>
         <tr ng-repeat="report in reports">
-            <td height="100" width="200">{{report.bill_id}}</td>
+            <td height="100" width="200"><button  ng-click=(getdetail(report.bill_id,report.session))>{{report.bill_id}}</button></td>
             <td style="padding-left:5em;">{{report.title}}</td>
             <td>{{report.created_at}}</td>
         </tr>

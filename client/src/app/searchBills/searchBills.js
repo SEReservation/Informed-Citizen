@@ -213,10 +213,45 @@ angular.module('searchBills', [])
 
 
         $scope.myChange = function () {
-            $http.get('http://openstates.org/api/v1//bills/?state=' + $scope.state["code"] + '&sort=created_at&page=1&per_page=5&apikey=efe4a4e77a154868947e0e24593a32e7').success(function (data) {
+            $http.get('http://openstates.org/api/v1//bills/?state=' + $scope.state["code"] + '&sort=created_at&page=1&per_page=100&apikey=efe4a4e77a154868947e0e24593a32e7').success(function (data) {
                 $scope.reports = angular.fromJson(data);
 
             })
-        };
-
+        }
+        $scope.getdetail=function(id,session){
+            var legiscanapikey='e034b7ea7e6d048483197f62a7f8cfc6';
+            id = id.replace(/[\s]/g, '');
+            $http.get('https://api.legiscan.com/?key='+legiscanapikey+'&op=search&state=' + $scope.state["code"]+'&bill='+id).success(function (detaildata){
+               $scope.billdetail = detaildata;
+            })
+        }
     });
+
+
+
+/* *****************************************************************wip code*******************************************
+ wip - either display the text or download after converting from base64
+ $scope.gettext=function(billid){
+ alert("in func" + billid);
+ var legiscanapikey='e034b7ea7e6d048483197f62a7f8cfc6';
+ $http.get('https://api.legiscan.com/?key='+legiscanapikey+'&op=getBillText&id='+billid).success(function (textdata){
+ alert("in here2");
+ $scope.billtext = atob(textdata.doc);
+ //window.open("data:application/pdf;base64," + Base64.encode(billtext) );
+
+ })
+ }
+ $scope.downloadPDF = function downloadPDF() {
+ alert("in dl");
+ var pdf = 'data:application;base64,'+ $scope.billtext;
+ var dlnk = document.getElementById('dwnldLnk');
+ dlnk.href = pdf;
+
+ dlnk.click();
+
+
+ alert('downloaded');
+
+ }
+
+ ********************************************************************* */
