@@ -14,16 +14,16 @@
 
 
     </div>
-    <table>
+    <table class="table table-striped table-hover">
         <tr>
             <th style="font-size:200%">Bill Id</th>
             <th style=" padding-left:2em; font-size:200%;">Title</th>
-            <th style=" font-size:200%">Created At</th>
+            <th style=" font-size:200%">Date</th>
         </tr>
         <tr ng-repeat="report in reports">
-            <td height="100" width="200"><button  ng-click=(getdetail(report.bill_id,report.session))>{{report.bill_id}}</button></td>
+            <td width="100"><button  ng-click=(getdetail(report.bill_id,report.session))>{{report.bill_id}}</button></td>
             <td style="padding-left:5em;">{{report.title}}</td>
-            <td>{{report.created_at}}</td>
+            <td width="150">{{report.created_at}}</td>
         </tr>
     </table>
 </div>

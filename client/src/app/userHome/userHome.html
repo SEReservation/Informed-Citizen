@@ -1,24 +1,28 @@
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
+<div class="container-fluid">
+    <br/><br/><br/>
+    <button class="btn btn-default" data-toggle="collapse" data-target="#location">Not at home?</button>
+    <div class="collapse" id="location">
+        <div id="locationpanel" class="panel panel-info" style="width:560px">
+            <div id="locationbody" class="panel-body">
+                <div id="map" style="height:200px; width: 530px" /><br/>
+                <input id="address" placeholder="Enter New Address" ng-model = "address" type="textbox">
+                <input type="submit" value="Change Location" ng-click="initialize(address)">
+            </div>
+    </div>
 </div>
-
-<p>Not at home?</p><input id="address" placeholder="Enter New Address" ng-model = "address" type="textbox">
-<input type="submit" value="Change Location" ng-click="initialize(address)">
-
-</div>
-<div id="map" style="height:200px; width: 530px"></div><br /><br /><br />
-
 <!--Table holds images and info on legislators-->
-<table>
+<table id="federal" class="table table-striped table-hover table-bordered">
     <tr>
-        <th style="font-size:200%">Your Representatives</th>
-        <th style=" padding-left:2em; font-size:200%;">Chamber</th>
-        <th style=" padding-left:2em; font-size:200%;">Money Talks</th>
-        <th style=" padding-left:2em; font-size:200%;">Term</th>
-        <th style=" font-size:200%">Contact</th>
+        <th style="text-align:center; font-size:200%">Representative</th>
+        <th style="text-align:center; font-size:200%;">Chamber</th>
+        <th style="text-align:center; font-size:200%;">Money Talks</th>
+        <th style="text-align:center; font-size:200%;">Term</th>
+        <th style="text-align:center; font-size:200%">Contact</th>
     </tr>
-    <tr ng-repeat="report in reports" >
-        <td width = 15% style="font-size:200%; font-style:italic; font-weight:bold;" ><img  style ="padding-top:2em; padding-bottom:2em;"src = "https://theunitedstates.io/images/congress/225x275/{{report.bioguide_id}}.jpg"><br />{{report.title}}. {{report.first_name}} {{report.last_name}}<br /><br />
+    <tr ng-repeat="report in reports">
+        <td width = 20% style="font-style:italic; font-weight:bold;" >
+            <img width="50%" style="float:left;"src = "https://theunitedstates.io/images/congress/225x275/{{report.bioguide_id}}.jpg">
+            {{report.title}}. {{report.first_name}} {{report.last_name}}<br/>
         <div ng-switch on="report.party">
             <div ng-switch-when="D">
                 <p>Democrat</p>
@@ -32,13 +36,13 @@
 
         </div>
         </td>
-        <td width = 15% style="padding-left:7em; ">{{report.chamber | uppercase}}</td>
-        <td width = 15% style="padding-left:7em;"><a href = "http://docquery.fec.gov/cgi-bin/can_give/{{report.fec_ids[report.fec_ids.length - 1]}}">Comittee Contributions</a><br />
+        <td width = 15% style="text-align:center">{{report.chamber | uppercase}}</td>
+        <td width = 15% style="text-align:center"><a href = "http://docquery.fec.gov/cgi-bin/can_give/{{report.fec_ids[report.fec_ids.length - 1]}}">Comittee Contributions</a><br />
         <a href = "http://docquery.fec.gov/cgi-bin/can_ind/{{report.fec_ids[report.fec_ids.length-1]}}">Individual Contributions</a><br />
             <a href = "http://docquery.fec.gov/cgi-bin/can_com/{{report.fec_ids[report.fec_ids.length - 1]}}">Paid by this official's committees</a><br /></td>
-        <td width = 15% style="padding-left:10em;">{{report.term_start}} - {{report.term_end}}
+        <td width = 15% style="text-align:center">{{report.term_start}} - {{report.term_end}}
             </td>
-        <td width = 15% style="padding-left:9em;">
+        <td width = 10% style="text-align:center">
         <div>
             <a href="{{report.website}}">Website</a>
         </div>
@@ -58,27 +62,28 @@
     </table>
 
 <!-- Second table for state legislator information -->
-<table>
-    <br />
-    <br />
-    <th width = 25% style="text-align:left; font-size:200%">State Legislator Information:</th>
-    <th  width = 25% style=" text-align:left; padding-left:2em; font-size:200%;">District/Chamber</th>
+<table id="state" class="table table-striped table-hover table-bordered">
+    <th width = 25% style="text-align:center; font-size:200%">State Legislator</th>
+    <th  width = 25% style="text-align:center; font-size:200%;">District/Chamber</th>
 
-    <th  width = 25% style="text-align:left; padding-left:2em; font-size:200%;">Details</th>
-    <th  width = 25% style="text-align:left; padding-left:2em; font-size:200%;">Contact</th>
+    <th  width = 25% style="text-align:center; font-size:200%;">Details</th>
+    <th  width = 25% style="text-align:center; font-size:200%;">Contact</th>
 
 
     <tr ng-repeat="statereport in statereports"><br />
         <br />
-        <td width = 20% style="text-align:left;font-size:200%; font-style:italic; font-weight:bold;" > <img style="height:200px; padding-top:2em; padding-bottom:2em;" src="{{statereport.photo_url}}"><br />{{statereport.first_name}} {{statereport.last_name}}<br /><br />{{statereport.party}}</td>
-        <td width = 20% style="text-align:left;padding-left:7em; ">{{statereport.district | uppercase}}/{{statereport.chamber | uppercase}}</td>
-        <td width = 20% style="text-align:left;padding-left:7em; "><a href="{{statereport.url}}">{{statereport.full_name}} details</a></td>
-        <td width = 20% style="text-align:left;padding-left:7em; ">{{statereport.offices[0].name}}<br />{{statereport.offices[0].address}}<br /><br />{{statereport.offices[0].phone}}<br />{{statereport.email}}</td>
+        <td width = 20% style="text-align:left; font-style:italic; font-weight:bold;" >
+            <img width="50%" style="float:left;" src="{{statereport.photo_url}}">
+            {{statereport.first_name}} {{statereport.last_name}}<br />
+            {{statereport.party}}</td>
+        <td width = 20% style="text-align:center;">{{statereport.district | uppercase}}/{{statereport.chamber | uppercase}}</td>
+        <td width = 20% style="text-align:center;"><a href="{{statereport.url}}">{{statereport.full_name}} details</a></td>
+        <td width = 20% style="text-align:center;">{{statereport.offices[0].name}}<br />{{statereport.offices[0].address}}<br /><br />{{statereport.offices[0].phone}}<br />{{statereport.email}}</td>
 
     </tr>
 </table>
 
 
 
-<div></div>
+<div></div></div>
 

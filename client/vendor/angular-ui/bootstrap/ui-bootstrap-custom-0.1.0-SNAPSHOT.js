@@ -18,7 +18,7 @@ dialogModule.provider("$dialog", function(){
   // The default options for all dialogs.
 	var defaults = {
 		backdrop: true,
-		modalClass: 'modal',
+		modalClass: 'modal modalfixed',
 		backdropClass: 'modal-backdrop',
     transitionClass: 'fade',
     triggerClass: 'in',

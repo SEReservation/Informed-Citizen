@@ -1,19 +1,30 @@
-<div class="navbar" ng-controller="HeaderCtrl">
-    <div class="navbar-inner">
-        <a class="brand" ng-click="home()">Informed Citizen</a>
-        <ul class="nav">
-            <li ng-class="{active:isNavbarActive('searchBills')}"><a href="/searchBills">Search Bills</a></li>
-            <li ng-class="{active:isNavbarActive('legislatorBios')}"><a href="/userHome">Legislator Info</a></li>
-        </ul>
-        <ul class="nav" ng-show="isAuthenticated()">
-            <li ng-class="{active:isNavbarActive('userHome')}"><a href="/userHome">User Home</a></li>
-            <li ng-class="{active:isNavbarActive('bills')}"><a href="/bills">My Bills</a></li>
-            <li ng-class="{active:isNavbarActive('admin')}" ng-show="isAdmin()"><a href="/admin/users">Admin</a></li>
-        </ul>
-        <ul class="nav pull-right" ng-show="hasPendingRequests()">
-            <li class="divider-vertical"></li>
-            <li><a href="#"><img src="/static/img/spinner.gif"></a></li>
-        </ul>
-        <login-toolbar></login-toolbar>
-    </div>
-</div>
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderCtrl">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" style="cursor:pointer" ng-click="home()">Informed Citizen</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ng-class="{active:isNavbarActive('searchBills')}"><a href="/searchBills">Search Bills</a></li>
+                <li ng-class="{active:isNavbarActive('legislatorBios')}"><a href="/userHome">Legislator Info</a></li>
+                <li ng-show="isAuthenticated()" ng-class="{active:isNavbarActive('userHome')}"><a href="/userHome">User Home</a></li>
+                <li ng-show="isAuthenticated()" ng-class="{active:isNavbarActive('bills')}"><a href="/bills">My Bills</a></li>
+                <li ng-show="isAuthenticated()" ng-class="{active:isNavbarActive('admin')}" ng-show="isAdmin()"><a href="/admin/users">Admin</a></li>
+            </ul>
+            <ul class="nav pull-right" ng-show="hasPendingRequests()">
+                <li class="divider-vertical"></li>
+                <li><a href="#"><img src="/static/img/spinner.gif"></a></li>
+            </ul>
+            <login-toolbar></login-toolbar>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
